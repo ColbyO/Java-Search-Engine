@@ -2,7 +2,7 @@ package com.searchengine.SQL.repositories;
 
 import java.util.List;
 
-import com.searchengine.SQL.models.Contacts;
+import com.searchengine.models.Contacts;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;

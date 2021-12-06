@@ -1,4 +1,4 @@
-package com.searchengine.SQL.models;
+package com.searchengine.models;
 
 import javax.persistence.*;
 

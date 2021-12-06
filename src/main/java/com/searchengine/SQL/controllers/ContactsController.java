@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.searchengine.SQL.models.Contacts;
+import com.searchengine.models.Contacts;
 import com.searchengine.SQL.repositories.ContactsRepository;
 
 import org.springframework.beans.factory.annotation.*;
