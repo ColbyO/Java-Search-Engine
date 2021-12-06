@@ -73,4 +73,14 @@ public class ContactsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/contacts/{id}")
+    public ResponseEntity<Contacts> deleteContactById(@PathVariable("id") long id) {
+        try {
+            repo.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
