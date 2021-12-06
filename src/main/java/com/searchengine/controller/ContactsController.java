@@ -55,4 +55,22 @@ public class ContactsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/contacts/{id}")
+    public ResponseEntity<Contacts> updateContactById(@PathVariable("id") long id, @RequestBody Contacts contacts) {
+        Optional<Contacts> contactInfo = repo.findById(id);
+        if (contactInfo.isPresent()) {
+            Contacts _contacts = contactInfo.get();
+            _contacts.setFirstName(contacts.getFirstName());
+            _contacts.setLastName(contacts.getLastName());
+            _contacts.setEmail(contacts.getEmail());
+            _contacts.setPhoneNumber(contacts.getPhoneNumber());
+            _contacts.setCompany(contacts.getCompany());
+            _contacts.setDepartment(contacts.getDepartment());
+            _contacts.setJobTitle(contacts.getJobTitle());
+            return new ResponseEntity<>(repo.save(_contacts), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
