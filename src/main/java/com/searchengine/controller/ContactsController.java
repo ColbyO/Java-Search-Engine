@@ -17,6 +17,7 @@ public class ContactsController {
     @Autowired
     ContactsRepository repo;
 
+    @GetMapping("/contacts")
     public ResponseEntity<List<Contacts>> getAllContacts(@RequestParam(required = false) String firstName) {
         try {
             List<Contacts> contacts = new ArrayList<Contacts>();
