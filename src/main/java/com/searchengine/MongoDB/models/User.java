@@ -1,15 +1,25 @@
 package com.searchengine.MongoDB.models;
 
-import org.springframework.security.crypto.bcrypt.*;
+import javax.persistence.Id;
+
+// import org.springframework.security.crypto.bcrypt.*;
 
 public class User {
+    @Id
     private long id;
-
     private String username;
-
+    private String email;
     private String password;
 
-    private String hashedPassword = BCrypt.hashpw(this.password, BCrypt.gensalt(10));
+    public User() {
+    }
+
+    public User(long id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public long getId() {
         return this.id;
@@ -27,6 +37,14 @@ public class User {
         this.username = username;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return this.password;
     }
@@ -35,13 +53,24 @@ public class User {
         this.password = password;
     }
 
-    public void checkPass(String password) {
-        if(BCrypt.checkpw(password, this.hashedPassword)) {
-            System.out.println("Password Match");
-        } else {
-            System.out.println("No Match");
-        }
+    public User id(long id) {
+        setId(id);
+        return this;
     }
 
+    public User username(String username) {
+        setUsername(username);
+        return this;
+    }
+
+    public User email(String email) {
+        setEmail(email);
+        return this;
+    }
+
+    public User password(String password) {
+        setPassword(password);
+        return this;
+    }
 
 }
