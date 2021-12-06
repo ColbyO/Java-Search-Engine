@@ -2,6 +2,7 @@ package com.searchengine.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.searchengine.models.Contacts;
 import com.searchengine.repositories.ContactsRepository;
@@ -17,8 +18,19 @@ public class ContactsController {
     @Autowired
     ContactsRepository repo;
 
+    @GetMapping("/contacts/{id}")
+	public ResponseEntity<Contacts> getTournamentsById(@PathVariable("id") long id) {
+		Optional<Contacts> contactData = repo.findById(id);
+
+		if (contactData.isPresent()) {
+			return new ResponseEntity<>(contactData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
     @GetMapping("/contacts")
-    public ResponseEntity<List<Contacts>> getAllContacts(@RequestParam(required = false) String firstName) {
+    public ResponseEntity<List<Contacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
         try {
             List<Contacts> contacts = new ArrayList<Contacts>();
             if(firstName == null) {

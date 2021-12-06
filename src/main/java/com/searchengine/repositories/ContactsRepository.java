@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RepositoryRestResource(collectionResourceRel = "Contacts", path = "Contacts")
 public interface ContactsRepository extends PagingAndSortingRepository<Contacts, Long> {
-    List<Contacts> findById(@Param("id") long id);
     List<Contacts> findByFirstName(@Param("firstName") String firstName);
 
 }
