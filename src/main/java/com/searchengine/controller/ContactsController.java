@@ -43,4 +43,16 @@ public class ContactsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/contacts")
+    public ResponseEntity<Contacts> createContact(@RequestBody Contacts contacts) {
+        try {
+            Contacts _contactsRepo = repo
+                    .save(new Contacts(contacts.getId(), contacts.getFirstName(), contacts.getLastName(), contacts.getEmail(), contacts.getPhoneNumber(), 
+                    contacts.getCompany(), contacts.getDepartment(), contacts.getJobTitle()));
+            return new ResponseEntity<>(_contactsRepo, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
