@@ -1,11 +1,9 @@
-package com.searchengine.models;
+package com.searchengine.SQL.models;
 
 import javax.persistence.*;
 
-@Entity
-public class Contacts {
+public class SQLContacts {
     @Id
-    @GeneratedValue
     private long id;
 
     private String firstName;
@@ -22,9 +20,9 @@ public class Contacts {
 
     private String jobTitle;
 
-    public Contacts() {}
+    public SQLContacts() {}
 
-    public Contacts(long id, String firstName, String lastName, String email, int phoneNumber, String company, String department, String jobTitle) {
+    public SQLContacts(long id, String firstName, String lastName, String email, int phoneNumber, String company, String department, String jobTitle) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

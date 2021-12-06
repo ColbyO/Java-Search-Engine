@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.searchengine.models.Contacts;
-import com.searchengine.SQL.repositories.ContactsRepository;
+import com.searchengine.SQL.models.SQLContacts;
+import com.searchengine.SQL.repositories.SQLContactsRepository;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api")
-public class ContactsController {
+@RequestMapping("/sql/api")
+public class SQLContactsController {
     @Autowired
-    ContactsRepository repo;
+    SQLContactsRepository repo;
 
     @GetMapping("/contacts/{id}")
-	public ResponseEntity<Contacts> getTournamentsById(@PathVariable("id") long id) {
-		Optional<Contacts> contactData = repo.findById(id);
+	public ResponseEntity<SQLContacts> getContactsById(@PathVariable("id") long id) {
+		Optional<SQLContacts> contactData = repo.findById(id);
 
 		if (contactData.isPresent()) {
 			return new ResponseEntity<>(contactData.get(), HttpStatus.OK);
@@ -30,9 +30,9 @@ public class ContactsController {
 	}
 
     @GetMapping("/contacts")
-    public ResponseEntity<List<Contacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
         try {
-            List<Contacts> contacts = new ArrayList<Contacts>();
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(firstName == null) {
                 repo.findAll().forEach(contacts::add);
             } else {
@@ -45,10 +45,10 @@ public class ContactsController {
     }
 
     @PostMapping("/contacts")
-    public ResponseEntity<Contacts> createContact(@RequestBody Contacts contacts) {
+    public ResponseEntity<SQLContacts> createContact(@RequestBody SQLContacts contacts) {
         try {
-            Contacts _contactsRepo = repo
-                    .save(new Contacts(contacts.getId(), contacts.getFirstName(), contacts.getLastName(), contacts.getEmail(), contacts.getPhoneNumber(), 
+            SQLContacts _contactsRepo = repo
+                    .save(new SQLContacts(contacts.getId(), contacts.getFirstName(), contacts.getLastName(), contacts.getEmail(), contacts.getPhoneNumber(), 
                     contacts.getCompany(), contacts.getDepartment(), contacts.getJobTitle()));
             return new ResponseEntity<>(_contactsRepo, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -57,10 +57,10 @@ public class ContactsController {
     }
 
     @PutMapping("/contacts/{id}")
-    public ResponseEntity<Contacts> updateContactById(@PathVariable("id") long id, @RequestBody Contacts contacts) {
-        Optional<Contacts> contactInfo = repo.findById(id);
+    public ResponseEntity<SQLContacts> updateContactById(@PathVariable("id") long id, @RequestBody SQLContacts contacts) {
+        Optional<SQLContacts> contactInfo = repo.findById(id);
         if (contactInfo.isPresent()) {
-            Contacts _contacts = contactInfo.get();
+            SQLContacts _contacts = contactInfo.get();
             _contacts.setFirstName(contacts.getFirstName());
             _contacts.setLastName(contacts.getLastName());
             _contacts.setEmail(contacts.getEmail());
@@ -75,7 +75,7 @@ public class ContactsController {
     }
 
     @DeleteMapping("/contacts/{id}")
-    public ResponseEntity<Contacts> deleteContactById(@PathVariable("id") long id) {
+    public ResponseEntity<SQLContacts> deleteContactById(@PathVariable("id") long id) {
         try {
             repo.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
