@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(collectionResourceRel = "Contacts", path = "Contacts")
+@RepositoryRestResource(collectionResourceRel = "contacts", path = "contacts")
 public interface SQLContactsRepository extends PagingAndSortingRepository<SQLContacts, Long> {
     List<SQLContacts> findByFirstName(@Param("firstName") String firstName);
 }

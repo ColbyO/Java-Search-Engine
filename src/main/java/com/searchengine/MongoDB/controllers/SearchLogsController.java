@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/mongodb/api")
+@RequestMapping("/mongodb/")
 public class SearchLogsController {
     @Autowired
     SearchLogsRepo repo;  

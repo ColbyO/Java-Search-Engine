@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/sql/api")
+@RequestMapping("/sql/")
 public class SQLContactsController {
     @Autowired
     SQLContactsRepository repo;

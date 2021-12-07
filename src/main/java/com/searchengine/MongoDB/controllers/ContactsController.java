@@ -1,5 +1,7 @@
 package com.searchengine.MongoDB.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.searchengine.MongoDB.models.Contacts;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/mongodb/api")
+@RequestMapping("/mongodb/")
 public class ContactsController {
     @Autowired
     ContactsRepo repo;
@@ -26,6 +28,21 @@ public class ContactsController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+  @GetMapping("/contacts")
+  public ResponseEntity<List<Contacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(firstName == null) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByFirstName(firstName).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
 
     @PostMapping("/contacts")
     public ResponseEntity<Contacts> createContact(@RequestBody Contacts contacts) {

@@ -2,22 +2,25 @@ package com.searchengine.SQL.models;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "contacts")
 public class SQLContacts {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @Column(name = "first_name")
     private String firstName;
-
+    @Column(name = "last_name")
     private String lastName;
-
+    @Column(name = "email")
     private String email;
-
+    @Column(name = "phone")
     private int phoneNumber;
-
+    @Column(name = "company")
     private String company;
-
+    @Column(name = "department")
     private String department;
-
+    @Column(name = "job_title")
     private String jobTitle;
 
     public SQLContacts() {}
