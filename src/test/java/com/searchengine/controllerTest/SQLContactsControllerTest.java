@@ -23,6 +23,19 @@ public class SQLContactsControllerTest {
     private SQLContacts contact, updatedContact;
 
     @Test
+    void getAllContactsById() {
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+
+        Mockito.when(contactsControllerMock.getContactsById(1)).thenReturn(new ResponseEntity<>(contact, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getContactsById(1), new ResponseEntity<>(contact, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
     void getAllContacts() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
         contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
@@ -38,13 +51,105 @@ public class SQLContactsControllerTest {
     }
 
     @Test
-    void getAllContactsById() {
+    void getAllContactsByFirstName() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
         contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
 
-        Mockito.when(contactsControllerMock.getContactsById(1)).thenReturn(new ResponseEntity<>(contact, HttpStatus.OK));
+        Mockito.when(contactsControllerMock.getAllContactsByFirstName("firstName")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
 
         try {
-            assertTrue(Objects.equals(contactsControllerMock.getContactsById(1), new ResponseEntity<>(contact, HttpStatus.OK)));
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByFirstName("firstName"), new ResponseEntity<>(contacts, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void getAllContactsByLastName() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
+
+        Mockito.when(contactsControllerMock.getAllContactsByLastName("lastName")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByLastName("lastName"), new ResponseEntity<>(contacts, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void getAllContactsByEmail() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
+
+        Mockito.when(contactsControllerMock.getAllContactsByEmail("email")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByEmail("email"), new ResponseEntity<>(contacts, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void getAllContactsByPhoneNumber() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
+
+        Mockito.when(contactsControllerMock.getAllContactsByPhoneNumber(11111)).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByPhoneNumber(11111), new ResponseEntity<>(contacts, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void getAllContactsByCompany() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
+
+        Mockito.when(contactsControllerMock.getAllContactsByCompany("company")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByCompany("company"), new ResponseEntity<>(contacts, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void getAllContactsByDepartment() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
+
+        Mockito.when(contactsControllerMock.getAllContactsByDepartment("department")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByDepartment("department"), new ResponseEntity<>(contacts, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void getAllContactsByJobTitle() {
+        List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contacts.add(contact);
+
+        Mockito.when(contactsControllerMock.getAllContactsByJobTitle("jobTitle")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByJobTitle("jobTitle"), new ResponseEntity<>(contacts, HttpStatus.OK)));
         } catch(Exception e) {
             System.out.println(e);
         }
