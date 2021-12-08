@@ -1,5 +1,7 @@
 package com.searchengine.MongoDB.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.searchengine.MongoDB.models.SearchLogs;
@@ -26,4 +28,55 @@ public class SearchLogsController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@GetMapping("/logs")
+	public ResponseEntity<List<SearchLogs>> getAllLogsByUsername(@RequestParam(required = false) String username) {
+        try {
+            List<SearchLogs> logsData = new ArrayList<SearchLogs>();
+            if(username == null) {
+                repo.findAll().forEach(logsData::add);
+            } else {
+                repo.findByUsername(username).forEach(logsData::add);
+            }
+            return new ResponseEntity<>(logsData, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+	@PostMapping("/logs")
+    public ResponseEntity<SearchLogs> createSearchLogs(@RequestBody SearchLogs logs) {
+        try {
+            SearchLogs _logsRepo = repo
+                    .save(new SearchLogs(logs.getId(), logs.getUsername(), logs.getSearchTerm(), logs.getDatabase(), logs.getCreatedAt()));
+            return new ResponseEntity<>(_logsRepo, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/logs/{id}")
+    public ResponseEntity<SearchLogs> updateContactById(@PathVariable("id") long id, @RequestBody SearchLogs logs) {
+        Optional<SearchLogs> logsInfo = repo.findById(id);
+        if (logsInfo.isPresent()) {
+            SearchLogs _logs = logsInfo.get();
+            _logs.setUsername(logs.getUsername());
+            _logs.setSearchTerm(logs.getSearchTerm());
+            _logs.setDatabase(logs.getDatabase());
+            _logs.setCreatedAt(logs.getCreatedAt());
+            return new ResponseEntity<>(repo.save(_logs), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/logs/{username}")
+    public ResponseEntity<SearchLogs> deleteSearchLogsByUsername(@PathVariable("username") String username) {
+        try {
+            repo.deleteById(username);;
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
