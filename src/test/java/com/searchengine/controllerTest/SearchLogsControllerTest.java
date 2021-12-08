@@ -3,6 +3,8 @@ package com.searchengine.controllerTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.searchengine.MongoDB.controllers.SearchLogsController;
@@ -21,6 +23,21 @@ public class SearchLogsControllerTest {
     @Mock
     SearchLogsController searchlogsControllerMock;
     private SearchLogs logs, updatedLogs;
+
+        @Test
+    void getAllLogs() {
+        List<SearchLogs> logsList = new ArrayList<SearchLogs>();
+        logs = new SearchLogs(1, "ColbyO", "Colby", "MongoDB", LocalDate.now());
+        logsList.add(logs);
+
+        Mockito.when(searchlogsControllerMock.getAllLogsByUsername(null)).thenReturn(new ResponseEntity<>(logsList, HttpStatus.OK));
+
+        try {
+            assertTrue(Objects.equals(searchlogsControllerMock.getAllLogsByUsername(null), new ResponseEntity<>(logsList, HttpStatus.OK)));
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }
 
     @Test
     void getAllLogsById() {
