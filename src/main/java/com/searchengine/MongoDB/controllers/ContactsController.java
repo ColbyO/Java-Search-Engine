@@ -29,7 +29,7 @@ public class ContactsController {
 		}
 	}
 
-  @GetMapping("/contacts")
+  @GetMapping("/contacts/{firstName}")
   public ResponseEntity<List<Contacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
@@ -43,6 +43,97 @@ public class ContactsController {
           return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
       }
   }
+
+  @GetMapping("/contacts/{lastName}")
+  public ResponseEntity<List<Contacts>> getAllContactsByLastName(@RequestParam(required = false) String lastName) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(lastName == null) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByLastName(lastName).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  @GetMapping("/contacts/{email}")
+  public ResponseEntity<List<Contacts>> getAllContactsByEmail(@RequestParam(required = false) String email) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(email == null) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByLastName(email).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  @GetMapping("/contacts/{phoneNumber}")
+  public ResponseEntity<List<Contacts>> getAllContactsByPhoneNumber(@RequestParam(required = false) int phoneNumber) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(phoneNumber == 0) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByPhoneNumber(phoneNumber).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  @GetMapping("/contacts/{company}")
+  public ResponseEntity<List<Contacts>> getAllContactsByCompany(@RequestParam(required = false) String company) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(company == null) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByCompany(company).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  @GetMapping("/contacts/{department}")
+  public ResponseEntity<List<Contacts>> getAllContactsByDepartment(@RequestParam(required = false) String department) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(department == null) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByDepartment(department).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  @GetMapping("/contacts/{jobTitle}")
+  public ResponseEntity<List<Contacts>> getAllContactsByJobTitle(@RequestParam(required = false) String jobTitle) {
+      try {
+          List<Contacts> contacts = new ArrayList<Contacts>();
+          if(jobTitle == null) {
+              repo.findAll().forEach(contacts::add);
+          } else {
+              repo.findByJobTitle(jobTitle).forEach(contacts::add);
+          }
+          return new ResponseEntity<>(contacts, HttpStatus.OK);
+      } catch (Exception e) {
+          return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
 
     @PostMapping("/contacts")
     public ResponseEntity<Contacts> createContact(@RequestBody Contacts contacts) {

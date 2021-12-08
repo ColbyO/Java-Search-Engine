@@ -29,7 +29,7 @@ public class SQLContactsController {
 		}
 	}
 
-    @GetMapping("/contacts")
+    @GetMapping("/contacts/{firstName}")
     public ResponseEntity<List<SQLContacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
@@ -37,6 +37,96 @@ public class SQLContactsController {
                 repo.findAll().forEach(contacts::add);
             } else {
                 repo.findByFirstName(firstName).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/{lastName}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByLastName(@RequestParam(required = false) String lastName) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            if(lastName == null) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByLastName(lastName).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/{email}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByEmail(@RequestParam(required = false) String email) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            if(email == null) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByLastName(email).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/{phoneNumber}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByPhoneNumber(@RequestParam(required = false) int phoneNumber) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            if(phoneNumber == 0) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByPhoneNumber(phoneNumber).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/{company}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByCompany(@RequestParam(required = false) String company) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            if(company == null) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByCompany(company).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/{department}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByDepartment(@RequestParam(required = false) String department) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            if(department == null) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByDepartment(department).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/{jobTitle}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByJobTitle(@RequestParam(required = false) String jobTitle) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            if(jobTitle == null) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByJobTitle(jobTitle).forEach(contacts::add);
             }
             return new ResponseEntity<>(contacts, HttpStatus.OK);
         } catch (Exception e) {
