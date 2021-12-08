@@ -7,7 +7,7 @@ import com.searchengine.MongoDB.models.Contacts;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ContactsRepo extends MongoRepository<Contacts, String> {
+public interface ContactsRepo extends MongoRepository<Contacts, Long> {
     Optional<Contacts> findById(long id);
     List<Contacts> findByFirstName(String firstName);
 }
