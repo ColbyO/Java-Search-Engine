@@ -70,10 +70,10 @@ public class SearchLogsController {
         }
     }
 
-    @DeleteMapping("/logs/{username}")
-    public ResponseEntity<SearchLogs> deleteSearchLogsByUsername(@PathVariable("username") String username) {
+	@DeleteMapping("/logs/{username}")
+    public ResponseEntity<SearchLogs> deleteSearchLogsById(@PathVariable("id") long id) {
         try {
-            repo.deleteById(username);;
+            repo.deleteById(id);;
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
