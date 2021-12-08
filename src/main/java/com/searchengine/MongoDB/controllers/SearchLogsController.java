@@ -29,7 +29,7 @@ public class SearchLogsController {
 		}
 	}
 
-	@GetMapping("/logs")
+	@GetMapping("/logs/{username}")
 	public ResponseEntity<List<SearchLogs>> getAllLogsByUsername(@RequestParam(required = false) String username) {
         try {
             List<SearchLogs> logsData = new ArrayList<SearchLogs>();
@@ -56,7 +56,7 @@ public class SearchLogsController {
     }
 
     @PutMapping("/logs/{id}")
-    public ResponseEntity<SearchLogs> updateContactById(@PathVariable("id") long id, @RequestBody SearchLogs logs) {
+    public ResponseEntity<SearchLogs> updateSearchLogsById(@PathVariable("id") long id, @RequestBody SearchLogs logs) {
         Optional<SearchLogs> logsInfo = repo.findById(id);
         if (logsInfo.isPresent()) {
             SearchLogs _logs = logsInfo.get();
