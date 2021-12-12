@@ -26,7 +26,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContacts() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByFirstName(null)).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -40,7 +40,7 @@ public class MongoDBContactsControllerTest {
 
     @Test
     void getAllContactsById() {
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
 
         Mockito.when(contactsControllerMock.getContactsById(1)).thenReturn(new ResponseEntity<>(contact, HttpStatus.OK));
 
@@ -54,7 +54,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByFirstName() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByFirstName("firstName")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -69,7 +69,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByLastName() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByLastName("lastName")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -84,7 +84,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByEmail() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByEmail("email")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -99,13 +99,13 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByPhoneNumber() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
-        Mockito.when(contactsControllerMock.getAllContactsByPhoneNumber(11111)).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+        Mockito.when(contactsControllerMock.getAllContactsByPhoneNumber("123-456-7890")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
 
         try {
-            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByPhoneNumber(11111), new ResponseEntity<>(contacts, HttpStatus.OK)));
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByPhoneNumber("123-456-7890"), new ResponseEntity<>(contacts, HttpStatus.OK)));
         } catch(Exception e) {
             System.out.println(e);
         }
@@ -114,7 +114,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByCompany() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByCompany("company")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -129,7 +129,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByDepartment() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByDepartment("department")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -144,7 +144,7 @@ public class MongoDBContactsControllerTest {
     @Test
     void getAllContactsByJobTitle() {
         List<Contacts> contacts = new ArrayList<Contacts>();
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByJobTitle("jobTitle")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -158,7 +158,7 @@ public class MongoDBContactsControllerTest {
 
     @Test
     void postContact() {
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
 
         Mockito.when(contactsControllerMock.createContact(contact)).thenReturn(new ResponseEntity<>(contact, HttpStatus.OK));
         try {
@@ -170,8 +170,8 @@ public class MongoDBContactsControllerTest {
 
     @Test
     void updateContactById() {
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
-        updatedContact = new Contacts(1, "John", "Doe", "test@mail.com", 222222, "Google", "Algorithms", "Software Engineer");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
+        updatedContact = new Contacts(1, "John", "Doe", "test@mail.com", "123-456-7890", "Google", "Algorithms", "Software Engineer");
 
         Mockito.when(contactsControllerMock.updateContactById(1, updatedContact)).thenReturn(new ResponseEntity<>(updatedContact, HttpStatus.OK));
         try {
@@ -183,7 +183,7 @@ public class MongoDBContactsControllerTest {
 
     @Test
     void deleteContactById() {
-        contact = new Contacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new Contacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
 
         Mockito.when(contactsControllerMock.deleteContactById(1)).thenReturn(new ResponseEntity<>(HttpStatus.NO_CONTENT));
         try {

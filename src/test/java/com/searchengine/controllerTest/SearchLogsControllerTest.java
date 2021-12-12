@@ -27,7 +27,7 @@ public class SearchLogsControllerTest {
         @Test
     void getAllLogs() {
         List<SearchLogs> logsList = new ArrayList<SearchLogs>();
-        logs = new SearchLogs(1, "ColbyO", "Colby", "MongoDB", LocalDate.now());
+        logs = new SearchLogs(1, "ColbyO", "Colby", "firstname", "MongoDB", LocalDate.now());
         logsList.add(logs);
 
         Mockito.when(searchlogsControllerMock.getAllLogsByUsername(null)).thenReturn(new ResponseEntity<>(logsList, HttpStatus.OK));
@@ -41,7 +41,7 @@ public class SearchLogsControllerTest {
 
     @Test
     void getAllLogsById() {
-        logs = new SearchLogs(1, "ColbyO", "Colby", "MongoDB", LocalDate.now());
+        logs = new SearchLogs(1, "ColbyO", "Colby", "firstname", "MongoDB", LocalDate.now());
 
         Mockito.when(searchlogsControllerMock.getLogsById(1)).thenReturn(new ResponseEntity<>(logs, HttpStatus.OK));
 
@@ -54,7 +54,7 @@ public class SearchLogsControllerTest {
 
     @Test
     void createLogs() {
-        logs = new SearchLogs(1, "ColbyO", "Colby", "MongoDB", LocalDate.now());
+        logs = new SearchLogs(1, "ColbyO", "Colby", "firstname", "MongoDB", LocalDate.now());
 
         Mockito.when(searchlogsControllerMock.createSearchLogs(logs)).thenReturn(new ResponseEntity<>(logs, HttpStatus.OK));
         try {
@@ -66,8 +66,8 @@ public class SearchLogsControllerTest {
 
     @Test
     void updateLogsById() {
-        logs = new SearchLogs(1, "ColbyO", "Colby", "MongoDB", LocalDate.now());
-        updatedLogs = new SearchLogs(1, "Colby", "ColbyO", "PostgreSQL", LocalDate.now());
+        logs = new SearchLogs(1, "ColbyO", "Colby", "firstname", "MongoDB", LocalDate.now());
+        updatedLogs = new SearchLogs(1, "Colby", "ColbyO", "firstname", "PostgreSQL", LocalDate.now());
 
         Mockito.when(searchlogsControllerMock.updateSearchLogsById(1, updatedLogs)).thenReturn(new ResponseEntity<>(HttpStatus.NO_CONTENT));
         try {
@@ -79,7 +79,7 @@ public class SearchLogsControllerTest {
 
     @Test
     void deleteLogsByUsername() {
-        logs = new SearchLogs(1, "ColbyO", "Colby", "MongoDB", LocalDate.now());
+        logs = new SearchLogs(1, "ColbyO", "Colby", "firstname", "MongoDB", LocalDate.now());
 
         Mockito.when(searchlogsControllerMock.deleteSearchLogsById(1)).thenReturn(new ResponseEntity<>(HttpStatus.NO_CONTENT));
         try {

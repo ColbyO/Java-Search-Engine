@@ -24,7 +24,7 @@ public class SQLContactsControllerTest {
 
     @Test
     void getAllContactsById() {
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
 
         Mockito.when(contactsControllerMock.getContactsById(1)).thenReturn(new ResponseEntity<>(contact, HttpStatus.OK));
 
@@ -38,7 +38,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContacts() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByFirstName(null)).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -53,7 +53,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByFirstName() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByFirstName("firstName")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -68,7 +68,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByLastName() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByLastName("lastName")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -83,7 +83,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByEmail() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByEmail("email")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -98,13 +98,13 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByPhoneNumber() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
-        Mockito.when(contactsControllerMock.getAllContactsByPhoneNumber(11111)).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
+        Mockito.when(contactsControllerMock.getAllContactsByPhoneNumber("123-456-7890")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
 
         try {
-            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByPhoneNumber(11111), new ResponseEntity<>(contacts, HttpStatus.OK)));
+            assertTrue(Objects.equals(contactsControllerMock.getAllContactsByPhoneNumber("123-456-7890"), new ResponseEntity<>(contacts, HttpStatus.OK)));
         } catch(Exception e) {
             System.out.println(e);
         }
@@ -113,7 +113,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByCompany() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByCompany("company")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -128,7 +128,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByDepartment() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByDepartment("department")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -143,7 +143,7 @@ public class SQLContactsControllerTest {
     @Test
     void getAllContactsByJobTitle() {
         List<SQLContacts> contacts = new ArrayList<SQLContacts>();
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
         contacts.add(contact);
 
         Mockito.when(contactsControllerMock.getAllContactsByJobTitle("jobTitle")).thenReturn(new ResponseEntity<>(contacts, HttpStatus.OK));
@@ -157,7 +157,7 @@ public class SQLContactsControllerTest {
 
     @Test
     void postContact() {
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
 
         Mockito.when(contactsControllerMock.createContact(contact)).thenReturn(new ResponseEntity<>(contact, HttpStatus.OK));
         try {
@@ -169,8 +169,8 @@ public class SQLContactsControllerTest {
 
     @Test
     void updateContactById() {
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
-        updatedContact = new SQLContacts(1, "John", "Doe", "test@mail.com", 222222, "Google", "Algorithms", "Software Engineer");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
+        updatedContact = new SQLContacts(1, "John", "Doe", "test@mail.com", "123-456-7890", "Google", "Algorithms", "Software Engineer");
 
         Mockito.when(contactsControllerMock.updateContactById(1, updatedContact)).thenReturn(new ResponseEntity<>(updatedContact, HttpStatus.OK));
         try {
@@ -182,7 +182,7 @@ public class SQLContactsControllerTest {
 
     @Test
     void deleteContactById() {
-        contact = new SQLContacts(1, "firstName", "lastName", "email", 11111, "company", "department", "jobTitle");
+        contact = new SQLContacts(1, "firstName", "lastName", "email", "123-456-7890", "company", "department", "jobTitle");
 
         Mockito.when(contactsControllerMock.deleteContactById(1)).thenReturn(new ResponseEntity<>(HttpStatus.NO_CONTENT));
         try {

@@ -29,7 +29,7 @@ public class SearchLogsController {
 		}
 	}
 
-	@GetMapping("/logs/{username}")
+	@GetMapping("/logs/searchLogsByUsername/{username}")
 	public ResponseEntity<List<SearchLogs>> getAllLogsByUsername(@RequestParam(required = false) String username) {
         try {
             List<SearchLogs> logsData = new ArrayList<SearchLogs>();
@@ -48,7 +48,7 @@ public class SearchLogsController {
     public ResponseEntity<SearchLogs> createSearchLogs(@RequestBody SearchLogs logs) {
         try {
             SearchLogs _logsRepo = repo
-                    .save(new SearchLogs(logs.getId(), logs.getUsername(), logs.getSearchTerm(), logs.getDatabase(), logs.getCreatedAt()));
+                    .save(new SearchLogs(logs.getId(), logs.getUsername(), logs.getSearchTerm(), logs.getSearchQuery(), logs.getDatabase(), logs.getCreatedAt()));
             return new ResponseEntity<>(_logsRepo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,6 +62,7 @@ public class SearchLogsController {
             SearchLogs _logs = logsInfo.get();
             _logs.setUsername(logs.getUsername());
             _logs.setSearchTerm(logs.getSearchTerm());
+            _logs.setSearchQuery(logs.getSearchQuery());
             _logs.setDatabase(logs.getDatabase());
             _logs.setCreatedAt(logs.getCreatedAt());
             return new ResponseEntity<>(repo.save(_logs), HttpStatus.OK);
@@ -70,7 +71,7 @@ public class SearchLogsController {
         }
     }
 
-	@DeleteMapping("/logs/{username}")
+	@DeleteMapping("/logs/deleteSearchLogsById/{username}")
     public ResponseEntity<SearchLogs> deleteSearchLogsById(@PathVariable("id") long id) {
         try {
             repo.deleteById(id);;

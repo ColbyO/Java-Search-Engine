@@ -3,29 +3,29 @@ package com.searchengine.SQL.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "contacts")
+@Table(name = "contact_data")
 public class SQLContacts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
     @Column(name = "email")
     private String email;
     @Column(name = "phone")
-    private int phoneNumber;
+    private String phoneNumber;
     @Column(name = "company")
     private String company;
     @Column(name = "department")
     private String department;
-    @Column(name = "job_title")
+    @Column(name = "jobtitle")
     private String jobTitle;
 
     public SQLContacts() {}
 
-    public SQLContacts(long id, String firstName, String lastName, String email, int phoneNumber, String company, String department, String jobTitle) {
+    public SQLContacts(long id, String firstName, String lastName, String email, String phoneNumber, String company, String department, String jobTitle) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,11 +68,11 @@ public class SQLContacts {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

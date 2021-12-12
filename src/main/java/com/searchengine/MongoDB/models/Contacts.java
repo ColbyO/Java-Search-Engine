@@ -5,24 +5,24 @@ import javax.persistence.*;
 public class Contacts {
     @Id
     private long id;
-
+    @Column(name = "firstname")
     private String firstName;
-
+    @Column(name = "lastname")
     private String lastName;
-
+    @Column(name = "email")
     private String email;
-
-    private int phoneNumber;
-
+    @Column(name = "phone")
+    private String phoneNumber;
+    @Column(name = "company")
     private String company;
-
+    @Column(name = "department")
     private String department;
-
+    @Column(name = "jobtitle")
     private String jobTitle;
 
     public Contacts() {}
 
-    public Contacts(long id, String firstName, String lastName, String email, int phoneNumber, String company, String department, String jobTitle) {
+    public Contacts(long id, String firstName, String lastName, String email, String phoneNumber, String company, String department, String jobTitle) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -65,11 +65,11 @@ public class Contacts {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

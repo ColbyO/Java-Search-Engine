@@ -15,7 +15,7 @@ public interface SQLContactsRepository extends JpaRepository<SQLContacts, Long> 
     List<SQLContacts> findByFirstName(@Param("firstName") String firstName);
     List<SQLContacts> findByLastName(@Param("lastName") String lastName);
     List<SQLContacts> findByEmail(@Param("email") String email);
-    List<SQLContacts> findByPhoneNumber(@Param("phoneNumber") int phoneNumber);
+    List<SQLContacts> findByPhoneNumber(@Param("phoneNumber") String phoneNumber);
     List<SQLContacts> findByCompany(@Param("company") String company);
     List<SQLContacts> findByDepartment(@Param("department") String department);
     List<SQLContacts> findByJobTitle(@Param("jobTitle") String jobTitle);
