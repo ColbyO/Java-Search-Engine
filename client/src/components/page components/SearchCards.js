@@ -9,7 +9,6 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 // PAGE COMPONENTS
 import CardModal from './CardModal';
 import EditModal from './EditModal'
-import AddFavorite from './AddFavorite'
 import Pagination from '../page components/Pagination';
 
 function SearchCards({searchTerm}) {
@@ -112,7 +111,7 @@ function SearchCards({searchTerm}) {
                                     }} >
                                     <DeleteIcon />
                                 </IconButton>
-                                <AddFavorite currentContact={contact123.id} contacts={contact123}/>
+                                
                             </ButtonGroup> 
                         </section>
                         <section style={{marginLeft: "83%", marginTop: "-16%"}}>

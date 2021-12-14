@@ -19,7 +19,6 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import EditModal from './EditModal'
 import SearchCards from './SearchCards';
 import AddContact from './AddContact';
-import AddFavorite from './AddFavorite'
 
 
 function ListSearches({searchTerm}) {
@@ -206,39 +205,6 @@ function ListSearches({searchTerm}) {
                             <AddIcon />
                         </IconButton>
                         </ButtonGroup>
-                    {/* If one grid is selected render edit and delete button with correct functions (DATA GRID ONLY) */}
-                    {
-                        selectionModel.length === 1 && view === "list" ? 
-                        <ButtonGroup style={{marginLeft: "-17%"}}>
-                            <AddFavorite currentContact={selectionModel} contacts={contact123}  />
-                            <IconButton aria-label="Edit" onClick={()=>{
-                                     setEdit(!edit)
-                                     getContactInfo()
-                                    }}>
-                                <EditIcon />
-                            </IconButton>
-                            <IconButton aria-label="Delete" onClick={()=>{
-                                deleteOneContact()
-                            }}>
-                                <DeleteIcon />
-                            </IconButton>
-                        </ButtonGroup>   
-                       
-                        : <></>
-                    }
-                    {/* If more than one grid is selected render delete button with correct functions (DATA GRID ONLY) */}
-                    {
-                        selectionModel.length > 1 && view === "list" ? 
-                        <ButtonGroup style={{marginLeft: "-12.7%"}}>
-                            <AddFavorite currentContact={selectionModel} contacts={contact123}  />
-                            <IconButton aria-label="Delete" onClick={()=> {
-                                deleteManyContacts()
-                            }}>
-                                <DeleteIcon />
-                            </IconButton>
-                        </ButtonGroup>                           
-                        : <></>
-                    }
                     {/* Edit Modal */}
                     {
                         edit ? <EditModal view={edit} profile={editInfo} close={closeModalHandler} /> : <></>

@@ -6,31 +6,13 @@ import logo from "../img/logo2.png"
 
 function NavBar() {
     // username use state
-    const [username, setUsername] = useState("")
+    const [username, setUsername] = useState(localStorage.getItem("username"))
     // logout function remove the token and redirect to login page
     const logoutHandler = () => {
         localStorage.removeItem("authToken")
         window.location = "/login"
     }
-    // gets the current users username and sets the username state
-    const getCurrentUser = async () => {
-        let currentUser = await axios({
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
-            },
-            url: "http://localhost:5000/api/private/get/currentuser",
-            data: {
-                id: "1001"
-            }
-        })
-        setUsername(currentUser.data.username)
-    }
-    // run function on run.
-    useEffect(() => {
-        getCurrentUser()
-    }, [])
+
 
     return (
         <Navbar variant="dark" bg="primary">

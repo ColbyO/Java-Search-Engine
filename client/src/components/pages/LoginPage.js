@@ -8,9 +8,7 @@ import logo from "../img/logo.png"
 // BOOTSTRAP
 import { Form, Card, Alert } from "react-bootstrap"
 // MATERIAL UI
-import { FormControl, Input, InputLabel, InputAdornment, Button as Button1 } from '@material-ui/core'
-import EmailIcon from '@material-ui/icons/Email';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import { FormControl, Input, InputLabel, Button as Button1 } from '@material-ui/core'
 
 function LoginPage({history}) {
    // useStates for inputs
@@ -65,15 +63,15 @@ function LoginPage({history}) {
             <Form style={{marginTop: "10%"}} onSubmit={loginHandler}>
               {/*************************** INPUT ***************************/}
             <section style={{marginLeft: "10%"}}>
-              {/*************************** EMAIL INPUT ***************************/}
+              {/*************************** USERNAME INPUT ***************************/}
             <FormControl style={{width: "90%"}}>
-              <InputLabel htmlFor="username" >Email</InputLabel>
-              <Input id="username" startAdornment={<InputAdornment position="start"><EmailIcon /></InputAdornment>} required onChange={(e)=> setUsername(e.target.value)} />
+              <InputLabel htmlFor="username" >Username</InputLabel>
+              <Input id="username" required onChange={(e)=> setUsername(e.target.value)} />
             </FormControl>
             {/*************************** PASSWORD INPUT ***************************/}
             <FormControl style={{width: "90%"}} >
               <InputLabel htmlFor="password" >Password</InputLabel>
-              <Input id="password" startAdornment={<InputAdornment position="start"><VpnKeyIcon /></InputAdornment>} type="password" required  onChange={(e)=> setPassword(e.target.value)}/>
+              <Input id="password" type="password" required  onChange={(e)=> setPassword(e.target.value)}/>
             </FormControl>
             </section>
             {/*************************** LOG IN BUTTON ***************************/}

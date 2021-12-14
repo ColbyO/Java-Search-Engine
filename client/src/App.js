@@ -9,8 +9,6 @@ import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
 import History from './components/pages/History';
 import Settings from './components/pages/Settings';
-import Bookmarks from './components/pages/Bookmarks';
-import InFolder from './components/pages/inFolder';
 
 const App = () => {
   return (
@@ -21,8 +19,6 @@ const App = () => {
         <PrivateRoute exact path="/" component={SearchPage} />
         <PrivateRoute exact path="/history" component={History} />
         <PrivateRoute exact path="/settings" component={Settings} />
-        <PrivateRoute exact path="/bookmarks" component={Bookmarks} />
-        <PrivateRoute path="/bookmarks/:folderid" component={InFolder} />
         
         {/******************* ROUTES *******************/}
         <Route exact path="/login" component={LoginPage} />
