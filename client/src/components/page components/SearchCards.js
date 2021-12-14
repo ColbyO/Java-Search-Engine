@@ -131,13 +131,13 @@ function SearchCards({searchTerm}) {
                 color: "black",
                 transform: "scale(2.0)", 
                 // search through and randomly pick color from array
-                backgroundColor: classes[Math.floor(Math.random() * 5)]}}>{keyWord.firstname[0]}</Avatar>
+                backgroundColor: classes[Math.floor(Math.random() * 5)]}}>{keyWord.firstName[0]}</Avatar>
                 {/* Contact info */}
                 <section style={{paddingTop: "25px"}}>
-                <Typography align="left" variant="h5" style={{marginTop: "10px", textAlign: "center"}} >{keyWord.firstname + " " + keyWord.lastname}</Typography>
+                <Typography align="left" variant="h5" style={{marginTop: "10px", textAlign: "center"}} >{keyWord.firstName + " " + keyWord.lastName}</Typography>
                 <Typography align="left" variant="h6" style={{textAlign: "center"}}>{keyWord.department}</Typography>
                 <Typography align="left" variant="subtitle1" style={{textAlign: "center"}}>{keyWord.company}</Typography>
-                <Typography align="left" variant="subtitle2" style={{textAlign: "center"}}>{keyWord.jobtitle}</Typography>
+                <Typography align="left" variant="subtitle2" style={{textAlign: "center"}}>{keyWord.jobTitle}</Typography>
                 </section>
 
             </Paper>
