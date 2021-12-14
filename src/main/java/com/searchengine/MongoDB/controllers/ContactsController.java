@@ -12,7 +12,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/mongodb/")
+@RequestMapping("/api/mongodb/")
 public class ContactsController {
     @Autowired
     ContactsRepo repo;

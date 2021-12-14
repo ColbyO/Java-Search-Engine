@@ -12,7 +12,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/sql/")
+@RequestMapping("/api/sql/")
 public class SQLContactsController {
     @Autowired
     SQLContactsRepository repo;
