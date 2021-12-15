@@ -1,3 +1,4 @@
+import MongoDBDataService from '../services/MongoDB';
 // PAGE FOR ALL SEARCH LOGS
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
@@ -6,22 +7,23 @@ import NavBar from '../page components/NavBar';
 
 function History() {
     const [Logs, setLogs] = useState()
-    const [user] = useState("")
+    const [user] = useState(localStorage.getItem("username"))
 
     // gets all logs and saves data on state
     async function getAllLogs() {
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
-            }
-        }
-        await axios.post("/api/private/logs",{
-            user: user,
-            withCredentials: true,
-        },config).then((res)=>{
-            setLogs(res.data)
-            })
+        await MongoDBDataService.searchLogsByUsername(user).then((res)=> setLogs(res.data))
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        //     }
+        // }
+        // await axios.get("http://localhost:8080/api/mongodb/logs",{
+        //     user: user,
+        //     withCredentials: true,
+        // },config).then((res)=>{
+        //     setLogs(res.data)
+        //     })
     }
     // run function on launch
     useEffect(()=> {

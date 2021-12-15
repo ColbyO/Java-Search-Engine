@@ -2,8 +2,10 @@ package com.searchengine.MongoDB.models;
 
 import javax.persistence.*;
 
+@Entity
 public class Contacts {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "firstname")
     private String firstName;
