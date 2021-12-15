@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { Navbar, Container, NavDropdown, Nav } from 'react-bootstrap'
-import axios from 'axios'
 
 import logo from "../img/logo2.png"
 
@@ -42,8 +41,6 @@ function NavBar() {
                     title={username}
                     menuVariant="light"
                     >
-                    <NavDropdown.Item href="/settings">Settings</NavDropdown.Item>
-                    <NavDropdown.Item href="/bookmarks">Bookmarks</NavDropdown.Item>
                     <NavDropdown.Item href="/history">History</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>

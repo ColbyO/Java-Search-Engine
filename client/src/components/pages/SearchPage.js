@@ -44,7 +44,7 @@ function SearchPage({history}) {
                             throw data2
                         })))
                     } else {
-                        await axios.all([SQLDataService.findByFirstName(search), 
+                        await axios.all([SQLDataService.findByFirstName(search),
                             MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database})])
                             .then((axios.spread((data1, data2) => {
                                 setSearchTerm(data1.data.rows)

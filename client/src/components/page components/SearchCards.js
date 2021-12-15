@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 // MATERIAL UI CORE
-import { Paper, Avatar, Typography, ButtonGroup, IconButton } from '@material-ui/core'
+import { Paper, Avatar, Typography } from '@material-ui/core'
 // MATERIAL UI ICONS
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+// import EditIcon from '@material-ui/icons/Edit';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 // PAGE COMPONENTS
-import CardModal from './CardModal';
-import EditModal from './EditModal'
+// import CardModal from './CardModal';
+// import EditModal from './EditModal'
 import Pagination from '../page components/Pagination';
 
 function SearchCards({searchTerm}) {
@@ -96,32 +96,6 @@ function SearchCards({searchTerm}) {
                 <Paper style={{width: "300px", height: "300px", boxShadow: "0px 1px 10px 1px rgba(0,0,0,0.41)", borderRadius: "15px"}} key={keyWord.id} onClick={()=> setContacts(keyWord)}>
                     <header style={{backgroundColor: "#0d6efd", height: "45%", borderRadius: "15px", boxShadow: "0px 15px 22px 5px rgba(0,0,0,0.1)"}}>
                     <section style={{transform: "scale(0.8)", marginTop: "2%", marginLeft: "-10%"}}>
-                        {/* Edit and Delete Buttons */}
-                            <ButtonGroup>
-                                <IconButton aria-label="Edit" onClick={()=> {
-                                        setModalInfo(keyWord)
-                                        setEdit(!edit)
-                                        getContactInfo()
-                                    }}  >
-                                    <EditIcon/>
-                                </IconButton>
-                                <IconButton aria-label="Delete" onClick={async ()=> {
-                                        await getContactInfo()
-                                        deleteOneContact()
-                                    }} >
-                                    <DeleteIcon />
-                                </IconButton>
-                                
-                            </ButtonGroup> 
-                        </section>
-                        <section style={{marginLeft: "83%", marginTop: "-16%"}}>
-                            {/* Expand info button */}
-                        <IconButton>
-                            <OpenInNewIcon onClick={()=> {
-                            setModalInfo(keyWord)
-                            setOpenModal(!openModal)
-                            }}  />
-                        </IconButton>
                         </section>
                     </header>
                 {/* Avatar */}
@@ -147,14 +121,6 @@ function SearchCards({searchTerm}) {
         <div>
 
       </div>
-        {/* Expand Info Modal */}
-      {
-          openModal ? <div > <CardModal view={openModal} info={modalInfo} close={closeModalHandler} /> </div> : <p></p>
-      }
-      {/* Edit Modal */}
-      {
-          edit ? <div ><EditModal view={edit} close={closeModalHandler} profile={modalInfo} /></div>  : <p></p>
-      }
       </div>
       {/* Pagination numbers at the bottom */}
       <div style={{marginLeft: "35%"}}>

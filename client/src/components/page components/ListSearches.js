@@ -3,22 +3,22 @@ import axios from 'axios';
 // BOOTSTRAP 
 import {Container} from 'react-bootstrap';
 // MATERIAL UI CORE
-import {IconButton} from '@material-ui/core';
+// import {IconButton} from '@material-ui/core';
 import {DataGrid} from '@material-ui/data-grid';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 // MATERIAL UI ICONS
-import ViewListIcon from '@material-ui/icons/ViewList';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import ViewModuleIcon from '@material-ui/icons/ViewModule';
+// import ViewListIcon from '@material-ui/icons/ViewList';
+// import EditIcon from '@material-ui/icons/Edit';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import AddIcon from '@material-ui/icons/Add';
+// import ViewModuleIcon from '@material-ui/icons/ViewModule';
 // MATERIAL UI LAB
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+// import ToggleButton from '@material-ui/lab/ToggleButton';
+// import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 // COMPONENTS
-import EditModal from './EditModal'
+// import EditModal from './EditModal'
 import SearchCards from './SearchCards';
-import AddContact from './AddContact';
+// import AddContact from './AddContact';
 
 
 function ListSearches({searchTerm}) {
@@ -30,8 +30,8 @@ function ListSearches({searchTerm}) {
     // View buttons to switch from cards to datagrid
     const [view, setView] = useState('module');
     // Modal States
-    const [edit, setEdit] = useState(false);
-    const [viewAddModal, setViewAddModal] = useState(false)
+    // const [edit, setEdit] = useState(false);
+    // const [viewAddModal, setViewAddModal] = useState(false)
 
     // get current contact info and save to state for edit modal
     const getContactInfo = async () => {
@@ -62,57 +62,7 @@ function ListSearches({searchTerm}) {
             setView("module")
         }
     };
-    // close modal handler
-    const closeModalHandler = () => {
-        setEdit(false)
-        setViewAddModal(false)
-    };
-    // delete contact function for on select
-    const deleteOneContact = async () => {
-        if (window.confirm("Are you sure you want to delete this contact?")) {
-            let deleteContact = await axios({
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
-                },
-                url: "http://localhost:5000/api/private/delete/contact",
-                data: {
-                    id: selectionModel[0]
-                }
-            })
-            if (deleteContact.status === 200) {
-                window.location = "/"
-            } else {
-                alert("DIDNT DELETE")
-            }
-        } else {
-            console.log("DIDNT DELETE")
-        }
-    } 
-    // delete multiple contacts function for on select DATAGRID ONLY
-    const deleteManyContacts = async () => {
-        if (window.confirm("Are you sure you want to delete this contact?")) {
-            let deleteContact = await axios({
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
-                },
-                url: "http://localhost:5000/api/private/delete/contacts",
-                data: {
-                    id: selectionModel
-                }
-            })
-            if (deleteContact.status === 200) {
-                window.location = "/"
-            } else {
-                alert("DIDNT DELETE")
-            }
-        } else {
-            console.log("DIDNT DELETE")
-        }        
-    }
+
     // set contact info for modals
     const getContact = async () => {
         let contactsArray = []
@@ -187,33 +137,6 @@ function ListSearches({searchTerm}) {
             {/* every new search term show contacts */}
             {searchTerm ? 
             <div>
-                <div style={{display: "flex"}}>
-                    {/* Buttons to toggle from cards to data grid */}
-                    <ToggleButtonGroup orientation="horizontal" value={view} exclusive onChange={handleViewChange}>
-                    <ToggleButton value="module" aria-label="module">
-                            <ViewModuleIcon />
-                        </ToggleButton>
-                        <ToggleButton value="list" aria-label="list">
-                            <ViewListIcon />
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-
-                        <ButtonGroup style={{marginLeft: "89.8%"}}>
-                        <IconButton aria-label="Add" onClick={()=> {
-                            setViewAddModal(!viewAddModal)
-                        }}>
-                            <AddIcon />
-                        </IconButton>
-                        </ButtonGroup>
-                    {/* Edit Modal */}
-                    {
-                        edit ? <EditModal view={edit} profile={editInfo} close={closeModalHandler} /> : <></>
-                    }
-                    {/* Add New Contact Modal */}
-                    {
-                        viewAddModal ? <AddContact open={viewAddModal} close={closeModalHandler} /> : <p></p>
-                    }
-                </div>
                 {/* If list button is clicked, render datagrid */}
                 {
                     view === "list" ? 
