@@ -3,18 +3,18 @@ import axios from 'axios';
 // BOOTSTRAP 
 import {Container} from 'react-bootstrap';
 // MATERIAL UI CORE
-// import {IconButton} from '@material-ui/core';
+import {IconButton} from '@material-ui/core';
 import {DataGrid} from '@material-ui/data-grid';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 // MATERIAL UI ICONS
-// import ViewListIcon from '@material-ui/icons/ViewList';
+import ViewListIcon from '@material-ui/icons/ViewList';
 // import EditIcon from '@material-ui/icons/Edit';
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import AddIcon from '@material-ui/icons/Add';
-// import ViewModuleIcon from '@material-ui/icons/ViewModule';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
 // MATERIAL UI LAB
-// import ToggleButton from '@material-ui/lab/ToggleButton';
-// import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 // COMPONENTS
 // import EditModal from './EditModal'
 import SearchCards from './SearchCards';
@@ -118,13 +118,13 @@ function ListSearches({searchTerm}) {
 
     // Datagrid columns
     const columns = [
-        {field: 'firstname', headerName: "First Name", width: 150, headerClassName: 'super-app-theme--header'},
-        {field: 'lastname', headerName: "Last Name", width: 150},
+        {field: 'firstName', headerName: "First Name", width: 150, headerClassName: 'super-app-theme--header'},
+        {field: 'lastName', headerName: "Last Name", width: 150},
         {field: 'company', headerName: "Company", width: 250},
         {field: 'department', headerName: "Department", width: 250},
-        {field: 'jobtitle', headerName: "Job Title", width: 250},
+        {field: 'jobtTtle', headerName: "Job Title", width: 250},
         {field: 'email', headerName: "Email", width: 250},
-        {field: 'phone', headerName: "Phone", width: 150},
+        {field: 'phoneNumber', headerName: "Phone", width: 150},
 
     ]
     // update table data everytime user searches 
@@ -134,6 +134,15 @@ function ListSearches({searchTerm}) {
 
     return (
         <Container>
+                <ToggleButtonGroup orientation="horizontal" value={view} exclusive onChange={handleViewChange}>
+                    <ToggleButton value="module" aria-label="module">
+                            <ViewModuleIcon />
+                        </ToggleButton>
+                        <ToggleButton value="list" aria-label="list">
+                            <ViewListIcon />
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+
             {/* every new search term show contacts */}
             {searchTerm ? 
             <div>
