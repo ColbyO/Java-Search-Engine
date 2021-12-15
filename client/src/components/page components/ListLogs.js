@@ -29,7 +29,7 @@ function ListLogs({Logs}) {
                     <DataGrid
                     rows={logData}
                     columns={columns}
-                    getRowId={(row) => row._id}
+                    getRowId={(row) => row.id}
                     pageSize={10}
                     /> </div> </div> : <p></p>    
             }
