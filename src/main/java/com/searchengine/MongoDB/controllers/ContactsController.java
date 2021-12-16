@@ -29,7 +29,7 @@ public class ContactsController {
 	}
 
   @GetMapping("/contacts/findByFirstName/{firstName}")
-  public ResponseEntity<List<Contacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
+  public ResponseEntity<List<Contacts>> getAllContactsByFirstName(@PathVariable("firstName") String firstName) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(firstName == null) {
@@ -44,7 +44,7 @@ public class ContactsController {
   }
 
   @GetMapping("/contacts/findByLastName/{lastName}")
-  public ResponseEntity<List<Contacts>> getAllContactsByLastName(@RequestParam(required = false) String lastName) {
+  public ResponseEntity<List<Contacts>> getAllContactsByLastName(@PathVariable("lastName") String lastName) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(lastName == null) {
@@ -59,7 +59,7 @@ public class ContactsController {
   }
 
   @GetMapping("/contacts/findByEmail/{email}")
-  public ResponseEntity<List<Contacts>> getAllContactsByEmail(@RequestParam(required = false) String email) {
+  public ResponseEntity<List<Contacts>> getAllContactsByEmail(@PathVariable("email") String email) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(email == null) {
@@ -74,7 +74,7 @@ public class ContactsController {
   }
 
   @GetMapping("/contacts/findByPhoneNumber/{phoneNumber}")
-  public ResponseEntity<List<Contacts>> getAllContactsByPhoneNumber(@RequestParam(required = false) String phoneNumber) {
+  public ResponseEntity<List<Contacts>> getAllContactsByPhoneNumber(@PathVariable("phoneNumber") String phoneNumber) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(phoneNumber == null) {
@@ -89,7 +89,7 @@ public class ContactsController {
   }
 
   @GetMapping("/contacts/findByCompany/{company}")
-  public ResponseEntity<List<Contacts>> getAllContactsByCompany(@RequestParam(required = false) String company) {
+  public ResponseEntity<List<Contacts>> getAllContactsByCompany(@PathVariable("company") String company) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(company == null) {
@@ -104,7 +104,7 @@ public class ContactsController {
   }
 
   @GetMapping("/contacts/findByDepartment/{department}")
-  public ResponseEntity<List<Contacts>> getAllContactsByDepartment(@RequestParam(required = false) String department) {
+  public ResponseEntity<List<Contacts>> getAllContactsByDepartment(@PathVariable("department") String department) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(department == null) {
@@ -119,7 +119,7 @@ public class ContactsController {
   }
 
   @GetMapping("/contacts/findByJobTitle/{jobTitle}")
-  public ResponseEntity<List<Contacts>> getAllContactsByJobTitle(@RequestParam(required = false) String jobTitle) {
+  public ResponseEntity<List<Contacts>> getAllContactsByJobTitle(@PathVariable("jobTitle") String jobTitle) {
       try {
           List<Contacts> contacts = new ArrayList<Contacts>();
           if(jobTitle == null) {

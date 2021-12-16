@@ -28,10 +28,27 @@ public class SQLContactsController {
 		}
 	}
 
-    @GetMapping("/contacts/findByFirstName/{firstName}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByFirstName(@RequestParam(required = false) String firstName) {
+    @GetMapping("/contacts")
+    public ResponseEntity<List<SQLContacts>> getAllContacts(@PathVariable("firstName") String firstName) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            System.out.println(firstName);
+            if(firstName == null) {
+                repo.findAll().forEach(contacts::add);
+            } else {
+                repo.findByFirstName(firstName).forEach(contacts::add);
+            }
+            return new ResponseEntity<>(contacts, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/contacts/findByFirstName/{firstName}")
+    public ResponseEntity<List<SQLContacts>> getAllContactsByFirstName(@PathVariable("firstName") String firstName) {
+        try {
+            List<SQLContacts> contacts = new ArrayList<SQLContacts>();
+            System.out.println(firstName);
             if(firstName == null) {
                 repo.findAll().forEach(contacts::add);
             } else {
@@ -44,7 +61,7 @@ public class SQLContactsController {
     }
 
     @GetMapping("/contacts/findByLastName/{lastName}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByLastName(@RequestParam(required = false) String lastName) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByLastName(@PathVariable("lastName") String lastName) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(lastName == null) {
@@ -59,7 +76,7 @@ public class SQLContactsController {
     }
 
     @GetMapping("/contacts/findByEmail/{email}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByEmail(@RequestParam(required = false) String email) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByEmail(@PathVariable("email") String email) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(email == null) {
@@ -74,7 +91,7 @@ public class SQLContactsController {
     }
 
     @GetMapping("/contacts/findByPhoneNumber/{phoneNumber}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByPhoneNumber(@RequestParam(required = false) String phoneNumber) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByPhoneNumber(@PathVariable("phoneNumber") String phoneNumber) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(phoneNumber == null) {
@@ -89,7 +106,7 @@ public class SQLContactsController {
     }
 
     @GetMapping("/contacts/findByCompany/{company}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByCompany(@RequestParam(required = false) String company) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByCompany(@PathVariable("company") String company) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(company == null) {
@@ -104,7 +121,7 @@ public class SQLContactsController {
     }
 
     @GetMapping("/contacts/findByDepartment/{department}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByDepartment(@RequestParam(required = false) String department) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByDepartment(@PathVariable("department") String department) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(department == null) {
@@ -119,7 +136,7 @@ public class SQLContactsController {
     }
 
     @GetMapping("/contacts/findByJobTitle/{jobTitle}")
-    public ResponseEntity<List<SQLContacts>> getAllContactsByJobTitle(@RequestParam(required = false) String jobTitle) {
+    public ResponseEntity<List<SQLContacts>> getAllContactsByJobTitle(@PathVariable("jobTitle") String jobTitle) {
         try {
             List<SQLContacts> contacts = new ArrayList<SQLContacts>();
             if(jobTitle == null) {
