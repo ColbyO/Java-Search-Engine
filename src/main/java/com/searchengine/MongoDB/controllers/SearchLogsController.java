@@ -29,7 +29,7 @@ public class SearchLogsController {
 	}
 
 	@GetMapping("/logs/searchLogsByUsername/{username}")
-	public ResponseEntity<List<SearchLogs>> getAllLogsByUsername(@RequestParam(required = false) String username) {
+	public ResponseEntity<List<SearchLogs>> getAllLogsByUsername(@PathVariable("username") String username) {
         try {
             List<SearchLogs> logsData = new ArrayList<SearchLogs>();
             if(username == null) {
