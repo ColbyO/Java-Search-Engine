@@ -36,18 +36,18 @@ function SearchPage({history}) {
         } else {
             if (database === "PostgreSQL") {
                 if (radio === "firstname") {
-                    if (search === "") {
+                    if (search === "All") {
                         await SQLDataService.getAll.then((res)=> {
                             setSearchTerm(res.data)
                         })
-                        await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                             throw res;
                         })
                     } else {
                         await SQLDataService.findByFirstName(search).then((res)=> {
                             setSearchTerm(res.data)
                         })
-                        await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        await MongoDBDataService.createLogs({id: 1, username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                             throw res;
                         })
                     }
@@ -56,7 +56,7 @@ function SearchPage({history}) {
                     await SQLDataService.findByLastName(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -64,7 +64,7 @@ function SearchPage({history}) {
                     await SQLDataService.findByEmail(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -72,7 +72,7 @@ function SearchPage({history}) {
                     await SQLDataService.findByPhoneNumber(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -80,7 +80,7 @@ function SearchPage({history}) {
                     await SQLDataService.findByCompany(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -88,7 +88,7 @@ function SearchPage({history}) {
                     await SQLDataService.findByDepartment(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -96,7 +96,7 @@ function SearchPage({history}) {
                     await SQLDataService.findByJobTitle(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
 
@@ -108,14 +108,14 @@ function SearchPage({history}) {
                         await MongoDBDataService.getAll().then((res)=> {
                             setSearchTerm(res.data)
                         })
-                        await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                             throw res;
                         })
                     } else {
                         await MongoDBDataService.findByFirstName(search).then((res)=> {
                             setSearchTerm(res.data)
                         })
-                        await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                             throw res;
                         })
                     }
@@ -124,7 +124,7 @@ function SearchPage({history}) {
                     await MongoDBDataService.findByLastName(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -132,7 +132,7 @@ function SearchPage({history}) {
                     await MongoDBDataService.findByEmail(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -140,7 +140,7 @@ function SearchPage({history}) {
                     await MongoDBDataService.findByPhoneNumber(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -148,7 +148,7 @@ function SearchPage({history}) {
                     await MongoDBDataService.findByCompany(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -156,7 +156,7 @@ function SearchPage({history}) {
                     await MongoDBDataService.findByDepartment(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }
@@ -164,7 +164,7 @@ function SearchPage({history}) {
                     await MongoDBDataService.findByJobTitle(search).then((res)=> {
                         setSearchTerm(res.data)
                     })
-                    await MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
                         throw res;
                     })
                 }                
@@ -173,7 +173,7 @@ function SearchPage({history}) {
                 if (radio === "firstname") {
                     if (search === "") {
                         await axios.all([MongoDBDataService.getAll(), SQLDataService.getAll(),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then((axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);
@@ -182,7 +182,7 @@ function SearchPage({history}) {
                         })))
                     } else {
                         await axios.all([MongoDBDataService.findByFirstName(search), SQLDataService.findByFirstName(search),
-                            MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                            MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                             .then((axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2);
@@ -193,7 +193,7 @@ function SearchPage({history}) {
                 }
                 if (radio === "lastname") {
                     await axios.all([MongoDBDataService.findByLastName(search), SQLDataService.findByLastName(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then(axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);
@@ -203,7 +203,7 @@ function SearchPage({history}) {
                 }
                 if (radio === "email") {
                     await axios.all([MongoDBDataService.findByEmail(search), SQLDataService.findByEmail(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then(axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);
@@ -213,7 +213,7 @@ function SearchPage({history}) {
                 }
                 if (radio === "phone") {
                     await axios.all([MongoDBDataService.findByPhoneNumber(search), SQLDataService.findByPhoneNumber(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then(axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);
@@ -223,7 +223,7 @@ function SearchPage({history}) {
                 }
                 if (radio === "company") {
                     await axios.all([MongoDBDataService.findByCompany(search), SQLDataService.findByCompany(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then(axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);
@@ -233,7 +233,7 @@ function SearchPage({history}) {
                 }
                 if (radio === "department") {
                     await axios.all([MongoDBDataService.findByDepartment(search), SQLDataService.findByDepartment(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then(axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);
@@ -243,7 +243,7 @@ function SearchPage({history}) {
                 }
                 if (radio === "jobtitle") {
                     await axios.all([MongoDBDataService.findByJobTitle(search), SQLDataService.findByJobTitle(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: searchTerm, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
+                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
                         .then(axios.spread((data1, data2, data3) => {
                             // combines both array's
                             Array.prototype.push.apply(data1.data, data2.data);

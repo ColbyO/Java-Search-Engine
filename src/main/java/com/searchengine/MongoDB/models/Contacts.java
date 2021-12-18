@@ -2,7 +2,10 @@ package com.searchengine.MongoDB.models;
 
 import javax.persistence.*;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Entity
+@Document("contacts")
 public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

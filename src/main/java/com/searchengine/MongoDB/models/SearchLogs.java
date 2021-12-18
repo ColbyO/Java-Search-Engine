@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Entity
+@Document("searchLogs")
 public class SearchLogs {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
