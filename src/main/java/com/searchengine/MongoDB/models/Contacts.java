@@ -10,19 +10,12 @@ public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "email")
     private String email;
-    @Column(name = "phone")
     private String phoneNumber;
-    @Column(name = "company")
     private String company;
-    @Column(name = "department")
     private String department;
-    @Column(name = "jobtitle")
     private String jobTitle;
 
     public Contacts() {}

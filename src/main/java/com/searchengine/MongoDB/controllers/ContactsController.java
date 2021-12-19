@@ -137,7 +137,7 @@ public class ContactsController {
     @PostMapping("/contacts")
     public ResponseEntity<Contacts> createContact(@RequestBody Contacts contacts) {
         try {
-          Contacts _contacts = repo.save(new Contacts(contacts.getId() + 1000, contacts.getFirstName(), contacts.getLastName(), contacts.getEmail(), contacts.getPhoneNumber(), 
+          Contacts _contacts = repo.save(new Contacts(contacts.getId(), contacts.getFirstName(), contacts.getLastName(), contacts.getEmail(), contacts.getPhoneNumber(), 
           contacts.getCompany(), contacts.getDepartment(), contacts.getJobTitle()));
           return new ResponseEntity<>(_contacts, HttpStatus.CREATED);
         } catch (Exception e) {

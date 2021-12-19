@@ -25,6 +25,9 @@ function SearchPage({history}) {
     const [databaseColor, setDatabaseColor] = useState("outline-secondary")
     // modal
     const [open, setOpen] = useState(false)
+    // for database data merge
+    const [mongoResults, setMongoResults] = useState()
+    const [sqlResults, setSQLResults] = useState()
 
     axios.defaults.headers.post['Content-Type'] = 'application/json'
     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("authToken")}`
@@ -172,84 +175,244 @@ function SearchPage({history}) {
             if (database === "Both") {
                 if (radio === "firstname") {
                     if (search === "") {
-                        await axios.all([MongoDBDataService.getAll(), SQLDataService.getAll(),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then((axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        })))
+                        await MongoDBDataService.getAll().then((res)=>{
+                            if (res.data !== null) {
+                                setMongoResults(res.data)
+                                if (sqlResults !== null || sqlResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)                                    
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                            } else throw res
+                        })
+                        await SQLDataService.getAll().then((res)=> {
+                            if (res.data != null) {
+                                setSQLResults(res.data)
+                                    if (mongoResults !== null || mongoResults !== undefined) {
+                                        // combines both databse data
+                                        Array.prototype.push.apply(mongoResults, sqlResults);
+                                        setSearchTerm(mongoResults)
+                                    } else {
+                                        setSearchTerm(res.data)
+                                    }
+                            } else throw res
+                        })
+
+                        await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                            throw res;
+                        })
                     } else {
-                        await axios.all([MongoDBDataService.findByFirstName(search), SQLDataService.findByFirstName(search),
-                            MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                            .then((axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2);
-                            setSearchTerm(data1.data)
-                            throw data3
-                            })))
+                        await MongoDBDataService.findByFirstName(search).then((res)=>{
+                            if (res.data !== null) {
+                                setMongoResults(res.data)
+                                if (sqlResults !== null || sqlResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)                                    
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                            } else throw res
+                        })
+                        await SQLDataService.findByFirstName(search).then((res)=> {
+                            if (res.data != null) {
+                                setSQLResults(res.data)
+                                    if (mongoResults !== null || mongoResults !== undefined) {
+                                        // combines both databse data
+                                        Array.prototype.push.apply(mongoResults, sqlResults);
+                                        setSearchTerm(mongoResults)
+                                    } else {
+                                        setSearchTerm(res.data)
+                                    }
+                            } else throw res
+                        })
+
+                        await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                            throw res;
+                        })
                     }
                 }
                 if (radio === "lastname") {
-                    await axios.all([MongoDBDataService.findByLastName(search), SQLDataService.findByLastName(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then(axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        }))
+                    await MongoDBDataService.findByLastName(search).then((res)=>{
+                        if (res.data !== null) {
+                            setMongoResults(res.data)
+                            if (sqlResults !== null || sqlResults !== undefined) {
+                                // combines both databse data
+                                Array.prototype.push.apply(mongoResults, sqlResults);
+                                setSearchTerm(mongoResults)                                    
+                            } else {
+                                setSearchTerm(res.data)
+                            }
+                        } else throw res
+                    })
+                    await SQLDataService.findByLastName(search).then((res)=> {
+                        if (res.data != null) {
+                            setSQLResults(res.data)
+                                if (mongoResults !== null || mongoResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                        } else throw res
+                    })
+
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        throw res;
+                    })
                 }
                 if (radio === "email") {
-                    await axios.all([MongoDBDataService.findByEmail(search), SQLDataService.findByEmail(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then(axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        }))  
+                    await MongoDBDataService.findByEmail(search).then((res)=>{
+                        if (res.data !== null) {
+                            setMongoResults(res.data)
+                            if (sqlResults !== null || sqlResults !== undefined) {
+                                // combines both databse data
+                                Array.prototype.push.apply(mongoResults, sqlResults);
+                                setSearchTerm(mongoResults)                                    
+                            } else {
+                                setSearchTerm(res.data)
+                            }
+                        } else throw res
+                    })
+                    await SQLDataService.findByEmail(search).then((res)=> {
+                        if (res.data != null) {
+                            setSQLResults(res.data)
+                                if (mongoResults !== null || mongoResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                        } else throw res
+                    })
+
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        throw res;
+                    }) 
                 }
                 if (radio === "phone") {
-                    await axios.all([MongoDBDataService.findByPhoneNumber(search), SQLDataService.findByPhoneNumber(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then(axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        }))
+                    await MongoDBDataService.findByPhoneNumber(search).then((res)=>{
+                        if (res.data !== null) {
+                            setMongoResults(res.data)
+                            if (sqlResults !== null || sqlResults !== undefined) {
+                                // combines both databse data
+                                Array.prototype.push.apply(mongoResults, sqlResults);
+                                setSearchTerm(mongoResults)                                    
+                            } else {
+                                setSearchTerm(res.data)
+                            }
+                        } else throw res
+                    })
+                    await SQLDataService.findByPhoneNumber(search).then((res)=> {
+                        if (res.data != null) {
+                            setSQLResults(res.data)
+                                if (mongoResults !== null || mongoResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                        } else throw res
+                    })
+
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        throw res;
+                    })
                 }
                 if (radio === "company") {
-                    await axios.all([MongoDBDataService.findByCompany(search), SQLDataService.findByCompany(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then(axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        }))
+                    await MongoDBDataService.findByCompany(search).then((res)=>{
+                        if (res.data !== null) {
+                            setMongoResults(res.data)
+                            if (sqlResults !== null || sqlResults !== undefined) {
+                                // combines both databse data
+                                Array.prototype.push.apply(mongoResults, sqlResults);
+                                setSearchTerm(mongoResults)                                    
+                            } else {
+                                setSearchTerm(res.data)
+                            }
+                        } else throw res
+                    })
+                    await SQLDataService.findByCompany(search).then((res)=> {
+                        if (res.data != null) {
+                            setSQLResults(res.data)
+                                if (mongoResults !== null || mongoResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                        } else throw res
+                    })
+
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        throw res;
+                    })
                 }
                 if (radio === "department") {
-                    await axios.all([MongoDBDataService.findByDepartment(search), SQLDataService.findByDepartment(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then(axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        }))
+                    await MongoDBDataService.findByDepartment(search).then((res)=>{
+                        if (res.data !== null) {
+                            setMongoResults(res.data)
+                            if (sqlResults !== null || sqlResults !== undefined) {
+                                // combines both databse data
+                                Array.prototype.push.apply(mongoResults, sqlResults);
+                                setSearchTerm(mongoResults)                                    
+                            } else {
+                                setSearchTerm(res.data)
+                            }
+                        } else throw res
+                    })
+                    await SQLDataService.findByDepartment(search).then((res)=> {
+                        if (res.data != null) {
+                            setSQLResults(res.data)
+                                if (mongoResults !== null || mongoResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                        } else throw res
+                    })
+
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        throw res;
+                    })
                 }
                 if (radio === "jobtitle") {
-                    await axios.all([MongoDBDataService.findByJobTitle(search), SQLDataService.findByJobTitle(search),
-                        MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()})])
-                        .then(axios.spread((data1, data2, data3) => {
-                            // combines both array's
-                            Array.prototype.push.apply(data1.data, data2.data);
-                            setSearchTerm(data1.data)
-                            throw data3
-                        }))
+                    await MongoDBDataService.findByJobTitle(search).then((res)=>{
+                        if (res.data !== null) {
+                            setMongoResults(res.data)
+                            if (sqlResults !== null || sqlResults !== undefined) {
+                                // combines both databse data
+                                Array.prototype.push.apply(mongoResults, sqlResults);
+                                setSearchTerm(mongoResults)                                    
+                            } else {
+                                setSearchTerm(res.data)
+                            }
+                        } else throw res
+                    })
+                    await SQLDataService.findByJobTitle(search).then((res)=> {
+                        if (res.data != null) {
+                            setSQLResults(res.data)
+                                if (mongoResults !== null || mongoResults !== undefined) {
+                                    // combines both databse data
+                                    Array.prototype.push.apply(mongoResults, sqlResults);
+                                    setSearchTerm(mongoResults)
+                                } else {
+                                    setSearchTerm(res.data)
+                                }
+                        } else throw res
+                    })
+
+                    await MongoDBDataService.createLogs({username: username, searchTerm: search, searchQuery: radio, database: database, createdAt: new Date().toLocaleString()}).then((res)=> {
+                        throw res;
+                    })
                 }
             }
             if (database === "Database") {
